@@ -12,3 +12,4 @@ Options -Indexes
 <FilesMatch "^\.|\.(sql|log|bak|ini|inc)$">
     Require all denied
 </FilesMatch>
+
