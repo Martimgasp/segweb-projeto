@@ -181,7 +181,7 @@ INSERT INTO utilizadores (perfil, username, email, password_hash, nome, morada, 
                                                                                                    ('tecnico',   'tecnico1',   'tecnico1@exemplo.pt',
                                                                                                     '$2y$12$qLzeldsoOv5deD7asJqmN.luKiCQSQG27eCsjKOGWqH3f/rQ4eOSW',
                                                                                                     'Técnico Teste', NULL, NULL, NULL),
-                                                                                                   ('candidato', 'candidato1', 'candidato1@exemplo.pt',
+                                                                                           ('candidato', 'candidato1', 'candidato1@exemplo.pt',
                                                                                                     '$2y$12$qLzeldsoOv5deD7asJqmN.luKiCQSQG27eCsjKOGWqH3f/rQ4eOSW',
                                                                                                     'Candidato Teste', 'Rua Fictícia 1, Ponta Delgada', '912345678', '123456789');
 
@@ -195,3 +195,5 @@ DROP USER IF EXISTS 'bolsas_app'@'localhost';
 CREATE USER 'bolsas_app'@'localhost' IDENTIFIED BY 'TrocaEstaPassword!2026';
 GRANT SELECT, INSERT, UPDATE, DELETE ON bolsas.* TO 'bolsas_app'@'localhost';
 FLUSH PRIVILEGES;
+
+/* olá *\
