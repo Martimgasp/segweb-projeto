@@ -196,4 +196,4 @@ CREATE USER 'bolsas_app'@'localhost' IDENTIFIED BY 'TrocaEstaPassword!2026';
 GRANT SELECT, INSERT, UPDATE, DELETE ON bolsas.* TO 'bolsas_app'@'localhost';
 FLUSH PRIVILEGES;
 
-/* olá *\
+/* olá  sou o joão*\
