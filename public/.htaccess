@@ -1,14 +1,6 @@
-# Sem listagem de diretórios
-Options -Indexes
 
-# Redirecionar HTTP -> HTTPS ao nível do Apache (requer mod_rewrite)
-<IfModule mod_rewrite.c>
+
     RewriteEngine On
     RewriteCond %{HTTPS} !=on
     RewriteRule  ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-</IfModule>
 
-# Não expor ficheiros ocultos nem de configuração
-<FilesMatch "^\.|\.(sql|log|bak|ini|inc)$">
-    Require all denied
-</FilesMatch>
