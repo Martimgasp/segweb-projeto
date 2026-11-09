@@ -7,7 +7,8 @@ return [
         'host'    => '127.0.0.1',
         'name'    => 'bolsas',
         'user'    => 'bolsas_app',
-        'pass'    => 'pass',
+        // Tem de ser IGUAL à password do CREATE USER no final de database/schema.sql
+        'pass'    => 'TrocaEstaPassword!2026',
         'charset' => 'utf8mb4',
     ],
     'app' => [

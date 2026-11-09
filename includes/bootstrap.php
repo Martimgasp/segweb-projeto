@@ -12,6 +12,18 @@ ini_set('display_errors', '0');
 ini_set('log_errors', '1');
 error_reporting(E_ALL);
 
+// RAIZ: prefixo relativo até public/ (vazio na raiz, "../" numa subpasta, ...)
+// Permite que header, links e redirecionamentos funcionem em qualquer pasta.
+$_publico = realpath(__DIR__ . '/../public');
+$_script  = isset($_SERVER['SCRIPT_FILENAME']) ? realpath($_SERVER['SCRIPT_FILENAME']) : false;
+$_nivel   = 0;
+if ($_publico !== false && $_script !== false && str_starts_with($_script, $_publico)) {
+    $_rel   = ltrim(str_replace('\\', '/', substr($_script, strlen($_publico))), '/');
+    $_nivel = substr_count($_rel, '/');
+}
+define('RAIZ', str_repeat('../', $_nivel));
+unset($_publico, $_script, $_nivel, $_rel);
+
 // HTTPS obrigatório: redireciona HTTP -> HTTPS (host fixo da configuração)
 if ($cfg['app']['force_https'] && !is_https()) {
     $uri = $_SERVER['REQUEST_URI'] ?? '/';
@@ -44,3 +56,7 @@ session_start();
 
 require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/csrf.php';
+require_once __DIR__ . '/validacao.php';
+require_once __DIR__ . '/auth.php';
+
+sessao_verificar_inatividade();

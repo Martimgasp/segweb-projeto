@@ -1,6 +1,8 @@
+Options -Indexes
 
-
+<IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{HTTPS} !=on
-    RewriteRule  ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-
+    # Host fixo (igual a 'host' em config.php) para evitar Host header injection
+    RewriteRule ^ https://localhost%{REQUEST_URI} [L,R=301]
+</IfModule>
