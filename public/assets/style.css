@@ -31,3 +31,18 @@ button { background: #0b5cab; color: #fff; border-color: #0b5cab; cursor: pointe
 form.inline { display: inline; margin-left: 1rem; }
 .btn-link { background: none; border: none; color: #fff; padding: 0; text-decoration: underline; }
 .cartao { background: #fff; padding: 1rem 1.25rem; border-radius: 6px; margin-bottom: 1rem; }
+
+/* Área do candidato */
+.submenu { display: flex; gap: 1.2rem; flex-wrap: wrap; padding-bottom: .8rem; margin-bottom: 1rem; border-bottom: 1px solid #d5dce6; }
+.submenu a { color: #0b5cab; text-decoration: none; }
+.form-largo { max-width: 640px; }
+.form textarea { resize: vertical; }
+.form label.linha { flex-direction: row; align-items: center; gap: .5rem; }
+.botao { display: inline-block; background: #0b5cab; color: #fff; padding: .5rem 1rem; border-radius: 4px; text-decoration: none; }
+button.perigo { background: #b3261e; border-color: #b3261e; }
+.estado { display: inline-block; padding: .1rem .55rem; border-radius: 999px; font-size: .8rem; background: #e4e9f0; color: #1c2430; }
+.estado-submetida { background: #dbe8f8; }
+.estado-em_analise { background: #fff1cc; }
+.estado-aprovada { background: #ddf3e2; }
+.estado-rejeitada, .estado-cancelada { background: #fdeceb; }
+.estado-a_aguardar_documentacao { background: #ffe3c4; }

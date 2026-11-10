@@ -44,4 +44,13 @@ require __DIR__ . '/../includes/header.php';
 
 <h2>Requisitos</h2>
 <p><?= nl2br(e($bolsa['requisitos'])) ?></p>
+
+<?php $atual = utilizador_atual(); ?>
+<?php if ($encerrada): ?>
+    <p class="alerta alerta-erro">O prazo de candidatura terminou.</p>
+<?php elseif ($atual === null): ?>
+    <p><a href="login.php">Inicie sessão</a> ou <a href="registo.php">registe-se</a> para se candidatar.</p>
+<?php elseif ($atual['perfil'] === 'candidato'): ?>
+    <p><a class="botao" href="candidato/candidatar.php?bolsa=<?= (int)$bolsa['id'] ?>">Candidatar</a></p>
+<?php endif; ?>
 <?php require __DIR__ . '/../includes/footer.php'; ?>
