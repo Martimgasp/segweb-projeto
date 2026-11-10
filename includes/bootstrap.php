@@ -58,5 +58,7 @@ require_once __DIR__ . '/db.php';
 require_once __DIR__ . '/csrf.php';
 require_once __DIR__ . '/validacao.php';
 require_once __DIR__ . '/auth.php';
+require_once __DIR__ . '/candidaturas.php';
+require_once __DIR__ . '/upload.php';
 
 sessao_verificar_inatividade();

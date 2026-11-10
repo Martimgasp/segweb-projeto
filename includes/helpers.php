@@ -85,3 +85,22 @@ function erro_http(int $codigo, string $mensagem): never
     require __DIR__ . '/footer.php';
     exit;
 }
+
+// Inteiro positivo vindo de $_POST (ou null)
+function post_id(string $chave): ?int
+{
+    $v = filter_var($_POST[$chave] ?? null, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+    return $v === false ? null : $v;
+}
+
+function formatar_datahora(string $dt): string
+{
+    $t = strtotime($dt);
+    return $t ? date('d/m/Y H:i', $t) : '';
+}
+
+function formatar_tamanho(int $bytes): string
+{
+    return $bytes >= 1048576 ? number_format($bytes / 1048576, 1, ',', '') . ' MB'
+                             : max(1, (int)round($bytes / 1024)) . ' KB';
+}
