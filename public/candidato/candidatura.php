@@ -34,13 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $s->execute([':id' => $c['id'], ':u' => $u['id']]);
             $estado = (string)$s->fetchColumn();
 
-            $s = $pdo->prepare('SELECT tipo FROM esclarecimentos WHERE candidatura_id = :c ORDER BY id DESC LIMIT 1');
-            $s->execute([':c' => $c['id']]);
-            $ultimo = $s->fetchColumn();
-
-            if (!in_array($estado, ['a_aguardar_documentacao', 'em_analise'], true) || $ultimo !== 'pedido') {
+            if ($estado !== 'a_aguardar_documentacao') {
                 $pdo->rollBack();
-                $erros[] = 'Não existe nenhum pedido de esclarecimento por responder.';
+                $erros[] = 'A candidatura não está a aguardar documentação.';
             } else {
                 $pdo->prepare(
                     "INSERT INTO esclarecimentos (candidatura_id, autor_id, tipo, mensagem) VALUES (:c, :a, 'resposta', :m)"
@@ -85,8 +81,8 @@ $s = $pdo->prepare(
 $s->execute([':c' => $c['id']]);
 $esclarecimentos = $s->fetchAll();
 
-$ultimoTipo   = $esclarecimentos ? end($esclarecimentos)['tipo'] : null;
-$podeResponder = in_array($c['estado'], ['a_aguardar_documentacao', 'em_analise'], true) && $ultimoTipo === 'pedido';
+// Pode responder e anexar documentos sempre que a candidatura aguarda documentação
+$podeResponder = $c['estado'] === 'a_aguardar_documentacao';
 
 $titulo = 'Candidatura';
 require __DIR__ . '/../../includes/header.php';
@@ -146,9 +142,10 @@ require __DIR__ . '/../../includes/menu_candidato.php';
 <?php endforeach; ?>
 
 <?php if ($podeResponder): ?>
+    <p class="alerta alerta-erro">O técnico precisa de documentação adicional. Envie uma mensagem e os documentos.</p>
     <form method="post" action="candidatura.php?id=<?= (int)$c['id'] ?>" enctype="multipart/form-data" class="form form-largo">
         <?= csrf_field() ?>
-        <label>Responder ao pedido
+        <label>Mensagem para o técnico
             <textarea name="mensagem" rows="5" maxlength="2000" required></textarea>
         </label>
         <label>Documentos adicionais (opcional)
