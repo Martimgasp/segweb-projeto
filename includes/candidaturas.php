@@ -86,3 +86,33 @@ function validar_dados_candidatura(): array
     }
     return [$d, $erros];
 }
+
+// ---- Lado do técnico ----
+
+// Transições de estado permitidas ao técnico (aprovada, rejeitada e cancelada são finais)
+const TRANSICOES = [
+    'submetida'               => ['em_analise'],
+    'em_analise'              => ['aprovada', 'rejeitada', 'a_aguardar_documentacao'],
+    'a_aguardar_documentacao' => ['em_analise'],
+];
+
+// Candidatura SÓ se estiver atribuída a este técnico (senão null)
+function candidatura_do_tecnico(int $id, int $tecnicoId): ?array
+{
+    $s = db()->prepare(
+        'SELECT c.*, b.designacao AS bolsa, b.montante,
+                u.nome AS candidato, u.email, u.morada, u.telefone, u.nif
+         FROM candidaturas c
+         JOIN bolsas b ON b.id = c.bolsa_id
+         JOIN utilizadores u ON u.id = c.utilizador_id
+         WHERE c.id = :id AND c.tecnico_id = :t'
+    );
+    $s->execute([':id' => $id, ':t' => $tecnicoId]);
+    return $s->fetch() ?: null;
+}
+
+function data_valida(string $v): bool
+{
+    $d = DateTime::createFromFormat('Y-m-d', $v);
+    return $d !== false && $d->format('Y-m-d') === $v;
+}
