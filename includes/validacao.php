@@ -37,8 +37,8 @@ function validar_nome(string $v): ?string
 // Máximo 72 bytes: limite do bcrypt (acima disso seria truncada em silêncio).
 function validar_password(string $v): ?string
 {
-    if (strlen($v) < 10) {
-        return 'A palavra-passe deve ter pelo menos 10 caracteres.';
+    if (strlen($v) < 8) {
+        return 'A palavra-passe deve ter pelo menos 8 caracteres.';
     }
     if (strlen($v) > 72) {
         return 'A palavra-passe não pode exceder 72 bytes.';

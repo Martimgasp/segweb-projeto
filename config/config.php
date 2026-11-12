@@ -19,5 +19,8 @@ return [
         'host'        => 'localhost',
         // Pasta de uploads, fora da pasta pública
         'upload_dir'  => __DIR__ . '/../storage/uploads',
+        // Chave AES-256 (32 bytes em base64) para cifrar NIF e IBAN. Esta é de DEMONSTRAÇÃO.
+        // Gerar outra: php -r "echo base64_encode(random_bytes(32));"
+        'chave_dados' => 'AiIvHFUEjheZ/o3NcbV9hAbWI90ixsHQ3ZGba6P+55k=',
     ],
 ];

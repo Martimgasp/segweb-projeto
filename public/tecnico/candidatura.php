@@ -109,7 +109,7 @@ require __DIR__ . '/../../includes/header.php';
     <dt>Email</dt><dd><?= e($c['email']) ?></dd>
     <dt>Morada</dt><dd><?= e($c['morada'] ?? '—') ?></dd>
     <dt>Telefone</dt><dd><?= e($c['telefone'] ?? '—') ?></dd>
-    <dt>NIF</dt><dd><?= e($c['nif'] ?? '—') ?></dd>
+    <dt>NIF</dt><dd><?= e(nif_ler($c['nif'], (int)$c['utilizador_id']) ?: '—') ?></dd>
 </dl>
 
 <h2>Candidatura</h2>
@@ -118,7 +118,7 @@ require __DIR__ . '/../../includes/header.php';
     <dt>Instituição</dt><dd><?= e($c['instituicao']) ?></dd>
     <dt>Curso</dt><dd><?= e($c['curso']) ?></dd>
     <dt>Rendimento do agregado</dt><dd><?= e(formatar_eur($c['rendimento_agregado'])) ?></dd>
-    <dt>IBAN</dt><dd><?= e($c['iban']) ?></dd>
+    <dt>IBAN</dt><dd><?= e(iban_ler($c['iban'], (int)$c['utilizador_id']) ?: '—') ?></dd>
     <dt>Montante da bolsa</dt><dd><?= e(formatar_eur($c['montante'])) ?></dd>
     <dt>Submetida em</dt><dd><?= e(formatar_datahora($c['data_submissao'])) ?></dd>
 </dl>

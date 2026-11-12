@@ -35,7 +35,7 @@ CREATE TABLE utilizadores (
                               nome                VARCHAR(150) NOT NULL,
                               morada              VARCHAR(255) NULL,
                               telefone            VARCHAR(20)  NULL,
-                              nif                 CHAR(9)      NULL,
+                              nif                 VARCHAR(255) NULL,      -- cifrado (AES-256-GCM)
                               tentativas_falhadas TINYINT UNSIGNED NOT NULL DEFAULT 0,   -- anti força bruta
                               bloqueado_ate       DATETIME     NULL,
                               criado_em           DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -70,7 +70,7 @@ CREATE TABLE candidaturas (
                               instituicao         VARCHAR(150)  NOT NULL,
                               curso               VARCHAR(150)  NOT NULL,
                               rendimento_agregado DECIMAL(10,2) NOT NULL,
-                              iban                VARCHAR(34)   NOT NULL,
+                              iban                VARCHAR(255)  NOT NULL, -- cifrado (AES-256-GCM)
                               estado              ENUM('submetida','em_analise','aprovada','rejeitada',
                                   'a_aguardar_documentacao','cancelada')
                                                                 NOT NULL DEFAULT 'submetida',
@@ -183,7 +183,7 @@ INSERT INTO utilizadores (perfil, username, email, password_hash, nome, morada, 
                                                                                                     'Técnico Teste', NULL, NULL, NULL),
                                                                                            ('candidato', 'candidato1', 'candidato1@exemplo.pt',
                                                                                                     '$2y$12$qLzeldsoOv5deD7asJqmN.luKiCQSQG27eCsjKOGWqH3f/rQ4eOSW',
-                                                                                                    'Candidato Teste', 'Rua Fictícia 1, Ponta Delgada', '912345678', '123456789');
+                                                                                                    'Candidato Teste', 'Rua Fictícia 1, Ponta Delgada', '912345678', NULL);   -- NIF a NULL: é cifrado pela aplicação (preencher no Perfil)
 
 -- ---------------------------------------------------------------------
 -- 3. UTILIZADOR DA APLICAÇÃO (princípio do menor privilégio)

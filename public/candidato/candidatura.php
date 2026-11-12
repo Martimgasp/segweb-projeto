@@ -101,7 +101,7 @@ require __DIR__ . '/../../includes/menu_candidato.php';
     <dt>Instituição</dt><dd><?= e($c['instituicao']) ?></dd>
     <dt>Curso</dt><dd><?= e($c['curso']) ?></dd>
     <dt>Rendimento do agregado</dt><dd><?= e(formatar_eur($c['rendimento_agregado'])) ?></dd>
-    <dt>IBAN</dt><dd><?= e($c['iban']) ?></dd>
+    <dt>IBAN</dt><dd><?= e(mascarar_iban(iban_ler($c['iban'], $u['id']))) ?></dd>
     <dt>Montante da bolsa</dt><dd><?= e(formatar_eur($c['montante'])) ?></dd>
     <dt>Submetida em</dt><dd><?= e(formatar_datahora($c['data_submissao'])) ?></dd>
     <dt>Última atualização</dt><dd><?= e(formatar_datahora($c['data_atualizacao'])) ?></dd>

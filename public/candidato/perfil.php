@@ -14,7 +14,7 @@ $d = [
     'email'    => $perfil['email'],
     'morada'   => (string)$perfil['morada'],
     'telefone' => (string)$perfil['telefone'],
-    'nif'      => (string)$perfil['nif'],
+    'nif'      => nif_ler($perfil['nif'], $u['id']),
 ];
 $erros = [];
 
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'UPDATE utilizadores SET nome = :n, email = :e, morada = :m, telefone = :t, nif = :nif WHERE id = :id'
             )->execute([
                 ':n' => $d['nome'], ':e' => $d['email'],
-                ':m' => $d['morada'] ?: null, ':t' => $d['telefone'] ?: null, ':nif' => $d['nif'] ?: null,
+                ':m' => $d['morada'] ?: null, ':t' => $d['telefone'] ?: null, ':nif' => nif_cifrar($d['nif'], $u['id']),
                 ':id' => $u['id'],
             ]);
             $_SESSION['nome'] = $d['nome'];

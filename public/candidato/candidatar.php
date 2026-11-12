@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             )->execute([
                 ':u' => $u['id'], ':b' => $bolsaId, ':t' => atribuir_tecnico($pdo),
                 ':i' => $d['instituicao'], ':c' => $d['curso'],
-                ':r' => (float)str_replace(',', '.', $d['rendimento']), ':iban' => $d['iban'],
+                ':r' => (float)str_replace(',', '.', $d['rendimento']), ':iban' => iban_cifrar($d['iban'], $u['id']),
             ]);
             $candId = (int)$pdo->lastInsertId();
             registar_historico($pdo, $candId, null, 'submetida', $u['id']);

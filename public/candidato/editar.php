@@ -19,7 +19,7 @@ $d = [
     'instituicao' => $c['instituicao'],
     'curso'       => $c['curso'],
     'rendimento'  => number_format((float)$c['rendimento_agregado'], 2, ',', ''),
-    'iban'        => $c['iban'],
+    'iban'        => iban_ler($c['iban'], (int)$c['utilizador_id']),
 ];
 $erros = [];
 
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 'UPDATE candidaturas SET instituicao = :i, curso = :c, rendimento_agregado = :r, iban = :iban WHERE id = :id'
             )->execute([
                 ':i' => $d['instituicao'], ':c' => $d['curso'],
-                ':r' => (float)str_replace(',', '.', $d['rendimento']), ':iban' => $d['iban'], ':id' => $c['id'],
+                ':r' => (float)str_replace(',', '.', $d['rendimento']), ':iban' => iban_cifrar($d['iban'], $u['id']), ':id' => $c['id'],
             ]);
             guardar_documentos($ficheiros, (int)$c['id'], $u['id'], null, $criados);
             $pdo->commit();

@@ -85,7 +85,7 @@ require __DIR__ . '/../includes/header.php';
     </label>
     <label>Palavra-passe
         <input type="password" name="password" maxlength="72" required autocomplete="new-password">
-        <span class="ajuda">Mínimo 10 caracteres, com minúsculas, maiúsculas e números.</span>
+        <span class="ajuda">Mínimo 8 caracteres, com minúsculas, maiúsculas e números.</span>
     </label>
     <label>Confirmar palavra-passe
         <input type="password" name="confirmar" maxlength="72" required autocomplete="new-password">
