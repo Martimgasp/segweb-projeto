@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/af3a6d73-26ce-41e8-bc17-3fea2f48a0d9/console.sql" value="af3a6d73-26ce-41e8-bc17-3fea2f48a0d9" />
+    <file url="file://$PROJECT_DIR$/database/dados_teste.sql" value="af3a6d73-26ce-41e8-bc17-3fea2f48a0d9" />
+    <file url="file://$PROJECT_DIR$/database/schema.sql" value="af3a6d73-26ce-41e8-bc17-3fea2f48a0d9" />
+  </component>
+</project>
